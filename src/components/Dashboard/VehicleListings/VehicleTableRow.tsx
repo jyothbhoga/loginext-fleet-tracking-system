@@ -2,7 +2,13 @@ import { Chip, TableCell, TableRow } from "@mui/material";
 import type { Vehicle } from "../../../common/interface";
 import { formatCustomLocalGeneric } from "../../../common/utils";
 
-const VehicleTableRow = ({ vehicle }: { vehicle: Vehicle }) => {
+const VehicleTableRow = ({
+  vehicle,
+  handleOpenModal,
+}: {
+  vehicle: Vehicle;
+  handleOpenModal: (id: string) => void;
+}) => {
   return (
     <TableRow>
       <TableCell
@@ -11,6 +17,7 @@ const VehicleTableRow = ({ vehicle }: { vehicle: Vehicle }) => {
           fontWeight: "bold",
           textDecoration: "underline",
         }}
+        onClick={() => handleOpenModal(vehicle.id)}
       >
         {vehicle.vehicleNumber}
       </TableCell>

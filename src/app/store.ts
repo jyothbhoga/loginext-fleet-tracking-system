@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import vehicleReducer from "./vehicleReducer/vehicleSlice";
 import statisticReducer from "./statisticsReducer/statisticSlice";
+import modalReducer from "./modalReducer/modalSlice";
 
 export const store = configureStore({
   reducer: {
     vehicles: vehicleReducer,
-    statistics: statisticReducer
+    statistics: statisticReducer,
+    modals: modalReducer
   },
 });
 

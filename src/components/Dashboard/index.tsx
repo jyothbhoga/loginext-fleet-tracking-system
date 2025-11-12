@@ -3,6 +3,7 @@ import Header from "../../reusableComponents/Header";
 import VehicleFilters from "./VehicleFilters";
 import VehicleListings from "./VehicleListings";
 import VehicleStatistics from "./VehicleStatistics";
+import { VehicleDetailModal } from "./VehicleInfo";
 
 const Dashboard = () => {
   return (
@@ -25,6 +26,7 @@ const Dashboard = () => {
         </Box>
         <VehicleListings />
       </Box>
+      <VehicleDetailModal />
     </Container>
   );
 };

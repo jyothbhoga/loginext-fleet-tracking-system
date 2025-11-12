@@ -4,7 +4,7 @@ import type { Statistic_Card } from "../../../common/interface";
 interface FilterCardProps {
   filter: Statistic_Card;
   selectedFilter: string;
-  selectFilter: any;
+  selectFilter: (id: string) => void;
 }
 const FilterCard = ({
   filter,

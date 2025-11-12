@@ -8,13 +8,15 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectVehiclesState } from "../../../app/vehicleReducer/vehicleSlice";
 import VehicleTableRow from "./VehicleTableRow";
+import { openVehicleModal } from "../../../app/modalReducer/modalSlice";
 
 export const VehicleTable: React.FC = () => {
   // Select the entire state object from the store
   const { data, loading, error } = useAppSelector(selectVehiclesState);
+  const dispatch = useAppDispatch();
 
   if (loading) {
     return <div>Loading vehicles...</div>;
@@ -27,6 +29,10 @@ export const VehicleTable: React.FC = () => {
   if (data.length === 0) {
     return <div>No vehicles found.</div>;
   }
+
+  const handleOpenModal = (vehicleId: string) => {
+    dispatch(openVehicleModal(vehicleId));
+  };
 
   return (
     // Your MUI Table implementation using the 'data' array
@@ -51,7 +57,11 @@ export const VehicleTable: React.FC = () => {
       </TableHead>
       <TableBody>
         {data.map((vehicle) => (
-          <VehicleTableRow vehicle={vehicle} key={vehicle.id} />
+          <VehicleTableRow
+            vehicle={vehicle}
+            key={vehicle.id}
+            handleOpenModal={handleOpenModal}
+          />
         ))}
       </TableBody>
     </Table>
