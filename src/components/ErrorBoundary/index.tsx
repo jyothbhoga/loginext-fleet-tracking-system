@@ -68,14 +68,6 @@ class ErrorBoundary extends Component<Props, State> {
           <Typography variant="caption" sx={{ display: "block" }}>
             **Error Message:** {this.state.error.message}
           </Typography>
-          {process.env.NODE_ENV === "development" && (
-            <Typography
-              variant="caption"
-              sx={{ display: "block", whiteSpace: "pre-wrap", mt: 1 }}
-            >
-              {this.state.errorInfo?.componentStack}
-            </Typography>
-          )}
         </Box>
       )}
 

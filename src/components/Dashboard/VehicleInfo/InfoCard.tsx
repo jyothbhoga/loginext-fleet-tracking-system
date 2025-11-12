@@ -1,11 +1,4 @@
-import {
-  Box,
-  Chip,
-  LinearProgress,
-  Typography,
-  type SvgIconTypeMap,
-} from "@mui/material";
-import type { OverridableComponent } from "@mui/material/OverridableComponent";
+import { Box, Chip, LinearProgress, Typography, type SvgIconProps } from "@mui/material";
 import { VEHICLE_CHIP_DESIGN } from "../../../common/utils";
 
 interface InfoCardProps {
@@ -13,7 +6,7 @@ interface InfoCardProps {
   value: React.ReactNode;
   isProgress?: boolean | undefined;
   isChip?: boolean | undefined;
-  icon: OverridableComponent<SvgIconTypeMap<Record<string, never>, "svg">>;
+  icon: React.ComponentType<SvgIconProps>;
   id: string;
 }
 
@@ -59,10 +52,13 @@ const InfoCard: React.FC<InfoCardProps> = ({
     >
       <Box sx={{ display: "flex", alignItems: "center", color: "#555", mb: 1 }}>
         <IconComponent
+          color="inherit"
           sx={{
             fontSize: "1rem",
             marginRight: "5px",
-            rotate: id === "batteryLevel" ? "90deg" : "0deg",
+
+            // 2. FIX: Use the CSS standard 'transform' property for rotation
+            transform: id === "batteryLevel" ? "rotate(90deg)" : "rotate(0deg)",
           }}
         />
         <Typography
