@@ -24,21 +24,6 @@ const VehicleFilters = () => {
 
   useFetchVehicles(fetchUrl);
 
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "200px",
-        }}
-      >
-        <Typography variant="body1">Loading Filters...</Typography>
-      </Box>
-    );
-  }
-
   if (error) {
     return <div style={{ color: "red" }}>Error loading filters: {error}</div>;
   }
@@ -56,7 +41,7 @@ const VehicleFilters = () => {
     setFetchUrl(newUrl);
   };
   return (
-    <Box>
+    <Box height="230px">
       <Button
         sx={{
           border: "1px solid lightgray",
@@ -64,6 +49,9 @@ const VehicleFilters = () => {
           width: "100%",
           textTransform: "capitalize",
           color: "green",
+          ":hover": {
+            backgroundColor: "white",
+          },
         }}
       >
         <WifiIcon
@@ -92,6 +80,18 @@ const VehicleFilters = () => {
           Filter By Status
         </Typography>
       </Box>
+      {(loading || !filters) && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "200px",
+          }}
+        >
+          <Typography variant="body1">Loading Filters...</Typography>
+        </Box>
+      )}
       <Box
         mt="20px"
         mb="20px"

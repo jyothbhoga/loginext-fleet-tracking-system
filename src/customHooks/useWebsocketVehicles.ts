@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { receiveWebSocketUpdate } from "../app/vehiclesReducer/vehiclesSlice";
-import { WEBSOCKET_URL } from "../common/config";
+import { STATISTICS_URL, VEHICLE_LIST_URL, WEBSOCKET_URL } from "../common/config";
+import { fetchStatisticsApi } from "../components/Dashboard/VehiclesStatistics/fetchStatistics";
 
 export function useWebSocketVehicles() {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ export function useWebSocketVehicles() {
 
         if (Array.isArray(message.data)) {
           dispatch(receiveWebSocketUpdate(message.data));
+          fetchStatisticsApi(STATISTICS_URL, dispatch);
           console.log(
             `Received vehicle update via WebSocket: ${message.data.length} vehicles.`
           );

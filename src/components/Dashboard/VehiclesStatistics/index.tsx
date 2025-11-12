@@ -1,36 +1,23 @@
 import { Box, Typography } from "@mui/material";
-import { useFetchStatistics } from "../../../customHooks/useFetchStatistics";
-import { STATISTICS_URL } from "../../../common/config";
 import { useAppSelector } from "../../../app/hooks";
 import { selectStatisticsState } from "../../../app/statisticsReducer/statisticSlice";
-import { transfromFleetStatistics } from "../../../common/utils";
+import {
+  getRealTimeUpdates,
+  transfromFleetStatistics,
+} from "../../../common/utils";
 import StatisticCard from "./StatisticCard";
 import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
 
 const VehicleStatistics = () => {
-  useFetchStatistics(STATISTICS_URL);
   const { data, loading, error } = useAppSelector(selectStatisticsState);
-
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "200px",
-        }}
-      >
-        <Typography variant="body1">Loading vehicles...</Typography>
-      </Box>
-    );
-  }
 
   if (error) {
     return <div style={{ color: "red" }}>Error loading data: {error}</div>;
   }
 
   const statisticArr = data && transfromFleetStatistics(data);
+
+  const { lastUpdated, nextUpdate } = getRealTimeUpdates(data?.timestamp || "");
 
   return (
     <Box>
@@ -62,6 +49,30 @@ const VehicleStatistics = () => {
           return <StatisticCard {...stat} key={stat.id} />;
         })}
       </Box>
+      {(loading || !data) && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "200px",
+          }}
+        >
+          <Typography variant="body1">Loading statistics...</Typography>
+        </Box>
+      )}
+      {data && (
+        <Box
+          sx={{
+            backgroundColor: "lightgray",
+            padding: "5px 10px",
+            borderRadius: "6px",
+            mt: "20px",
+          }}
+        >
+          <Typography>{`Updated ${lastUpdated} • Next update ${nextUpdate}`}</Typography>
+        </Box>
+      )}
     </Box>
   );
 };

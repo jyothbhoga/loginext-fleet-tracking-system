@@ -227,3 +227,39 @@ export const VEHICLE_CHIP_DESIGN = {
     textColor: "#000",
   },
 };
+
+export const getRealTimeUpdates = (timestamp: string) => {
+  const now = new Date().getTime();
+  const lastUpdateTime = new Date(timestamp).getTime();
+  const diffInMs = now - lastUpdateTime;
+  
+  const seconds = Math.floor(diffInMs / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  
+  let lastUpdated = "";
+  if (days > 0) {
+    lastUpdated = `${days}d ago`;
+  } else if (hours > 0) {
+    lastUpdated = `${hours}h ago`;
+  } else if (minutes > 0) {
+    const remainingSeconds = seconds % 60;
+    if (remainingSeconds > 0) {
+      lastUpdated = `${minutes}m ${remainingSeconds}s ago`;
+    } else {
+      lastUpdated = `${minutes}m ago`;
+    }
+  } else {
+    lastUpdated = `${seconds}s ago`;
+  }
+  
+  const updateIntervalMs = 3 * 60 * 1000; 
+  const nextUpdateMs = updateIntervalMs - (diffInMs % updateIntervalMs);
+  const nextUpdateMinutes = Math.ceil(nextUpdateMs / 1000 / 60);
+  
+  const nextUpdate = `~${nextUpdateMinutes} minute${nextUpdateMinutes !== 1 ? 's' : ''}`;
+  
+  return { lastUpdated, nextUpdate };
+};
+
