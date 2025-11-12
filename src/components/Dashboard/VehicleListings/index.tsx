@@ -18,7 +18,7 @@ const VehicleListings = () => {
         m="16px"
       >
         <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-          Vehicles {!loading && <span>{data.length}</span>}
+          Vehicles {!loading && <span>({data.length})</span>}
         </Typography>
         <Chip
           label="Live"

@@ -10,7 +10,14 @@ const Dashboard = () => {
       <Header />
       <Divider />
       <Box sx={{ display: "flex" }}>
-        <Box sx={{ display: "flex", flexDirection: "column", width: "25%" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "25%",
+            margin: "16px",
+          }}
+        >
           <VehicleFilters />
           <Divider />
 

@@ -1,43 +1,96 @@
-export function formatCustomLocal(isoString: string): string {
+import type { Statistic } from "./interface";
+
+export function formatCustomLocalGeneric(
+  isoString: string,
+  formatString: string
+): string {
   try {
     const date = new Date(isoString);
 
     if (isNaN(date.getTime())) {
-      return 'Invalid Date';
+      return "Invalid Date";
     }
 
     const options: Intl.DateTimeFormatOptions = {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false, 
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true, // Needed to determine AM/PM
     };
 
-    const formatter = new Intl.DateTimeFormat('en-GB', options);
-    const parts = formatter.formatToParts(date);
-    
-    // Extract required parts in order
-    const day = parts.find(p => p.type === 'day')?.value;
-    const month = parts.find(p => p.type === 'month')?.value;
-    const year = parts.find(p => p.type === 'year')?.value;
-    const hour = parts.find(p => p.type === 'hour')?.value;
-    const minute = parts.find(p => p.type === 'minute')?.value;
-    const second = parts.find(p => p.type === 'second')?.value;
+    const parts = new Intl.DateTimeFormat(undefined, options).formatToParts(
+      date
+    );
 
-    if (!day || !month || !year || !hour || !minute || !second) {
-        return 'Formatting Error: Missing date/time parts';
+    const partsMap = new Map(parts.map((p) => [p.type, p.value]));
+
+    const replacements: { [key: string]: string } = {
+      YYYY: partsMap.get("year") || "",
+      MM: partsMap.get("month") || "",
+      DD: partsMap.get("day") || "",
+
+      HH: (partsMap.get("hour") || "").padStart(2, "0"),
+      mm: partsMap.get("minute") || "00",
+      ss: partsMap.get("second") || "00",
+
+      A: partsMap.get("dayPeriod") || "",
+
+      hh:
+        new Date(date)
+          .toLocaleTimeString(undefined, { hour: "2-digit", hour12: true })
+          .match(/\d+/)?.[0] || "",
+    };
+
+    let formattedString = formatString;
+
+    const sortedKeys = Object.keys(replacements).sort(
+      (a, b) => b.length - a.length
+    );
+
+    for (const key of sortedKeys) {
+      formattedString = formattedString.replace(
+        new RegExp(key, "g"),
+        replacements[key]
+      );
     }
 
-    const datePart = `${day}:${month}:${year}`;
-    const timePart = `${hour}:${minute}:${second}`;
+    formattedString = formattedString
+      .replace(/\s*(a\.m\.|p\.m\.|am|pm)/i, (match) =>
+        formatString.includes("A") ? match : ""
+      )
+      .trim();
 
-    return `${datePart}, ${timePart}`;
-
+    return formattedString;
   } catch (error) {
     console.error("Error formatting date:", error);
-    return 'Formatting Error';
+    return "Formatting Error";
   }
 }
+
+export const transfromFleetStatistics = (stats: Statistic) => {
+  return [
+    {
+      label: "TOTAL FLEET",
+      value: stats.total,
+      key: "total",
+    },
+    {
+      label: "AVG SPEED",
+      value: stats.average_speed,
+      key: "average_speed",
+    },
+    {
+      label: "MOVING",
+      value: stats.en_route,
+      key: "en_route",
+    },
+    {
+      label: "LAST UPDATE",
+      value: formatCustomLocalGeneric(stats.timestamp, "HH:MM"),
+      key: "timestamp",
+    },
+  ];
+};

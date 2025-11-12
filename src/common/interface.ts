@@ -15,3 +15,18 @@ export interface Vehicle {
   batteryLevel: number;
   fuelLevel: number;
 }
+
+export interface Statistic {
+  idle: number;
+  total: number;
+  en_route: number;
+  delivered: number;
+  average_speed: number;
+  timestamp: string;
+}
+
+export interface Statistic_Card {
+  label: string;
+  value: number | string;
+  key: string
+}

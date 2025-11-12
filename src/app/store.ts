@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import vehicleReducer from "./vehicleReducer/vehicleSlice";
+import statisticReducer from "./statisticsReducer/statisticSlice";
 
 export const store = configureStore({
   reducer: {
     vehicles: vehicleReducer,
+    statistics: statisticReducer
   },
 });
 

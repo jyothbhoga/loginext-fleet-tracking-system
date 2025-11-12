@@ -1,11 +1,17 @@
 import { Chip, TableCell, TableRow } from "@mui/material";
 import type { Vehicle } from "../../../common/interface";
-import { formatCustomLocal } from "../../../common/utils";
+import { formatCustomLocalGeneric } from "../../../common/utils";
 
 const VehicleTableRow = ({ vehicle }: { vehicle: Vehicle }) => {
   return (
     <TableRow key={vehicle.id}>
-      <TableCell sx={{ color: "#3f51b5", fontWeight: "bold", textDecoration: 'underline' }}>
+      <TableCell
+        sx={{
+          color: "#3f51b5",
+          fontWeight: "bold",
+          textDecoration: "underline",
+        }}
+      >
         {vehicle.vehicleNumber}
       </TableCell>
       <TableCell>{vehicle.driverName}</TableCell>
@@ -36,7 +42,9 @@ const VehicleTableRow = ({ vehicle }: { vehicle: Vehicle }) => {
       </TableCell>
       <TableCell>{vehicle.destination}</TableCell>
       <TableCell>{vehicle.estimatedArrival ?? "-"}</TableCell>
-      <TableCell>{formatCustomLocal(vehicle.lastUpdated)}</TableCell>
+      <TableCell>
+        {formatCustomLocalGeneric(vehicle.lastUpdated, "DD:MM:YYYY, HH:mm:ss")}
+      </TableCell>
       <TableCell>{`${vehicle.currentLocation.lat}, ${vehicle.currentLocation.lat}`}</TableCell>
     </TableRow>
   );
