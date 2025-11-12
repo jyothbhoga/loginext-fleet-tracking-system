@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../app/hooks";
 import {
-  fetchVehiclesFailure,
-  fetchVehiclesStart,
-  fetchVehiclesSuccess,
-} from "../app/vehiclesReducer/vehiclesSlice";
+  fetchSingleVehicleFailure,
+  fetchSingleVehicleStart,
+  fetchSingleVehicleSuccess,
+} from "../app/singleVehicleReducer/singleVehicleSlice";
 
-export function useFetchVehicles(url: string) {
+export function useFetchSingleVehicle(url: string) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export function useFetchVehicles(url: string) {
     const signal = controller.signal;
 
     const fetchData = async () => {
-      dispatch(fetchVehiclesStart());
+      dispatch(fetchSingleVehicleStart());
 
       try {
         const response = await fetch(url, { signal });
@@ -25,7 +25,7 @@ export function useFetchVehicles(url: string) {
 
         const result = await response.json();
 
-        dispatch(fetchVehiclesSuccess(result.data));
+        dispatch(fetchSingleVehicleSuccess(result.data));
       } catch (e) {
         if (e instanceof Error && e.name === "AbortError") {
           return;
@@ -34,7 +34,7 @@ export function useFetchVehicles(url: string) {
         const errorMessage =
           e instanceof Error ? e.message : "An unknown error occurred";
 
-        dispatch(fetchVehiclesFailure(errorMessage));
+        dispatch(fetchSingleVehicleFailure(errorMessage));
       }
     };
 

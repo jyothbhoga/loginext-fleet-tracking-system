@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { selectVehiclesState } from "../../../app/vehiclesReducer/vehicleSlice";
+import { selectVehiclesState } from "../../../app/vehiclesReducer/vehiclesSlice";
 import VehicleTableRow from "./VehicleTableRow";
 import { openVehicleModal } from "../../../app/modalReducer/modalSlice";
 

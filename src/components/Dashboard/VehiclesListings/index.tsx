@@ -1,7 +1,7 @@
 import { Box, Chip, Typography } from "@mui/material";
 import { VehicleTable } from "./VehicleTable";
 import { useAppSelector } from "../../../app/hooks";
-import { selectVehiclesState } from "../../../app/vehiclesReducer/vehicleSlice";
+import { selectVehiclesState } from "../../../app/vehiclesReducer/vehiclesSlice";
 
 const VehicleListings = () => {
   const { data, loading } = useAppSelector(selectVehiclesState);
