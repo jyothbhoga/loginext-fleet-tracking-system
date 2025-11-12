@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
-import { useAppDispatch } from '../app/hooks';
-import { fetchVehiclesFailure, fetchVehiclesStart, fetchVehiclesSuccess } from '../app/vehicleReducer/vehicleSlice';
-
+import { useEffect } from "react";
+import { useAppDispatch } from "../app/hooks";
+import {
+  fetchVehiclesFailure,
+  fetchVehiclesStart,
+  fetchVehiclesSuccess,
+} from "../app/vehiclesReducer/vehicleSlice";
 
 export function useFetchVehicles(url: string) {
   const dispatch = useAppDispatch();
@@ -20,17 +23,17 @@ export function useFetchVehicles(url: string) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const result = await response.json(); 
-        
-        dispatch(fetchVehiclesSuccess(result.data));
+        const result = await response.json();
 
+        dispatch(fetchVehiclesSuccess(result.data));
       } catch (e) {
-        if (e instanceof Error && e.name === 'AbortError') {
-          return; 
+        if (e instanceof Error && e.name === "AbortError") {
+          return;
         }
-        
-        const errorMessage = e instanceof Error ? e.message : "An unknown error occurred";
-        
+
+        const errorMessage =
+          e instanceof Error ? e.message : "An unknown error occurred";
+
         dispatch(fetchVehiclesFailure(errorMessage));
       }
     };

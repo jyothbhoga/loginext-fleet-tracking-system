@@ -1,8 +1,8 @@
 import { Box, Container, Divider } from "@mui/material";
 import Header from "../../reusableComponents/Header";
-import VehicleFilters from "./VehicleFilters";
-import VehicleListings from "./VehicleListings";
-import VehicleStatistics from "./VehicleStatistics";
+import VehicleFilters from "./VehiclesFilters";
+import VehicleListings from "./VehiclesListings";
+import VehicleStatistics from "./VehiclesStatistics";
 import { VehicleDetailModal } from "./VehicleInfo";
 
 const Dashboard = () => {

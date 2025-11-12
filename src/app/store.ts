@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import vehicleReducer from "./vehicleReducer/vehicleSlice";
+import vehicleReducer from "./vehiclesReducer/vehicleSlice";
 import statisticReducer from "./statisticsReducer/statisticSlice";
 import modalReducer from "./modalReducer/modalSlice";
 
@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     vehicles: vehicleReducer,
     statistics: statisticReducer,
-    modals: modalReducer
+    modals: modalReducer,
   },
 });
 

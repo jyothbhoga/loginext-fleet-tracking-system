@@ -16,6 +16,7 @@ const VehicleTableRow = ({
           color: "#3f51b5",
           fontWeight: "bold",
           textDecoration: "underline",
+          cursor: "pointer",
         }}
         onClick={() => handleOpenModal(vehicle.id)}
       >

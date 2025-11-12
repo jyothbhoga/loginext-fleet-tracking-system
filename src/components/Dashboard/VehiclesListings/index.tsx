@@ -1,12 +1,9 @@
 import { Box, Chip, Typography } from "@mui/material";
-import { useFetchVehicles } from "../../../customHooks/useFetchVehicles";
-import { VEHICLE_LIST_URL } from "../../../common/config";
 import { VehicleTable } from "./VehicleTable";
 import { useAppSelector } from "../../../app/hooks";
-import { selectVehiclesState } from "../../../app/vehicleReducer/vehicleSlice";
+import { selectVehiclesState } from "../../../app/vehiclesReducer/vehicleSlice";
 
 const VehicleListings = () => {
-  useFetchVehicles(VEHICLE_LIST_URL);
   const { data, loading } = useAppSelector(selectVehiclesState);
 
   return (
