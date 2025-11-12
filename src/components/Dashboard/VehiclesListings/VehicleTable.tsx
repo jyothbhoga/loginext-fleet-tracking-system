@@ -1,5 +1,3 @@
-// src/components/VehiclesComponent.tsx
-
 import React from "react";
 import {
   Box,
@@ -16,7 +14,6 @@ import VehicleTableRow from "./VehicleTableRow";
 import { openVehicleModal } from "../../../app/modalReducer/modalSlice";
 
 export const VehicleTable: React.FC = () => {
-  // Select the entire state object from the store
   const { data, loading, error } = useAppSelector(selectVehiclesState);
   const dispatch = useAppDispatch();
 
@@ -48,7 +45,6 @@ export const VehicleTable: React.FC = () => {
   };
 
   return (
-    // Your MUI Table implementation using the 'data' array
     <Table>
       <TableHead sx={{ backgroundColor: "#f5f5f5" }}>
         <TableRow>

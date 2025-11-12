@@ -1,5 +1,3 @@
-// src/features/Statistics/StatisticsSlice.ts
-
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import type { Statistic } from "../../common/interface";

@@ -1,9 +1,7 @@
-// src/customHooks/useWebSocketVehicles.ts
-
 import { useEffect, useRef } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { receiveWebSocketUpdate } from "../app/vehiclesReducer/vehiclesSlice";
-import { STATISTICS_URL, VEHICLE_LIST_URL, WEBSOCKET_URL } from "../common/config";
+import { STATISTICS_URL, WEBSOCKET_URL } from "../common/config";
 import { fetchStatisticsApi } from "../components/Dashboard/VehiclesStatistics/fetchStatistics";
 
 export function useWebSocketVehicles() {

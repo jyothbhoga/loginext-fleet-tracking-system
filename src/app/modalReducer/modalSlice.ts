@@ -1,11 +1,9 @@
-// src/app/modalReducer/modalSlice.ts
-
-import { createSlice, type PayloadAction,  } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../store";
 
 interface VehicleModalState {
   isOpen: boolean;
-  vehicleId: string | null; 
+  vehicleId: string | null;
 }
 
 const initialState: VehicleModalState = {
@@ -14,16 +12,16 @@ const initialState: VehicleModalState = {
 };
 
 export const modalSlice = createSlice({
-  name: 'modal',
+  name: "modal",
   initialState,
   reducers: {
     openVehicleModal: (state, action: PayloadAction<string>) => {
       state.isOpen = true;
-      state.vehicleId = action.payload; 
+      state.vehicleId = action.payload;
     },
     closeVehicleModal: (state) => {
       state.isOpen = false;
-      state.vehicleId = null; 
+      state.vehicleId = null;
     },
   },
 });

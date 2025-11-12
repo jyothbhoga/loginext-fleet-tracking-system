@@ -32,5 +32,5 @@ export interface Statistic_Card {
   label: string;
   value: number | string;
   id: string;
-  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>
+  icon: OverridableComponent<SvgIconTypeMap<Record<string, never>, "svg">>;
 }

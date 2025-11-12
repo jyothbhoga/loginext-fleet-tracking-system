@@ -13,7 +13,7 @@ interface InfoCardProps {
   value: React.ReactNode;
   isProgress?: boolean | undefined;
   isChip?: boolean | undefined;
-  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
+  icon: OverridableComponent<SvgIconTypeMap<Record<string, never>, "svg">>;
   id: string;
 }
 

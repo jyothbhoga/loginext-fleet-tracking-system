@@ -45,10 +45,8 @@ export const vehiclesSlice = createSlice({
       state.data = [];
     },
     receiveWebSocketUpdate: (state, action: PayloadAction<Vehicle[]>) => {
-      // Logic: Replace the entire array with the new data pushed by the server.
-      // If you were only updating a few vehicles, you would merge the array here.
       state.data = action.payload;
-      state.loading = false; // Ensure loading is off after receiving data
+      state.loading = false; 
       state.error = null;
     },
   },
