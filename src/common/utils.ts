@@ -83,7 +83,7 @@ export function formatCustomLocalGeneric(
   }
 }
 
-export const transfromFleetStatistics = (stats: Statistic) => {
+export const transfromFleetStatistics = (stats: Statistic, lastUpdated: string) => {
   return [
     {
       label: "TOTAL FLEET",
@@ -105,7 +105,7 @@ export const transfromFleetStatistics = (stats: Statistic) => {
     },
     {
       label: "LAST UPDATE",
-      value: formatCustomLocalGeneric(stats.timestamp, "HH:MM"),
+      value: formatCustomLocalGeneric(lastUpdated, "HH:mm"),
       id: "timestamp",
       icon: WatchLaterOutlinedIcon,
     },

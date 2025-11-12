@@ -7,17 +7,20 @@ import {
 } from "../../../common/utils";
 import StatisticCard from "./StatisticCard";
 import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
+import { selectVehiclesState } from "../../../app/vehiclesReducer/vehiclesSlice";
 
 const VehicleStatistics = () => {
   const { data, loading, error } = useAppSelector(selectStatisticsState);
+
+  const {data:vehicleData} = useAppSelector(selectVehiclesState)
 
   if (error) {
     return <div style={{ color: "red" }}>Error loading data: {error}</div>;
   }
 
-  const statisticArr = data && transfromFleetStatistics(data);
+  const statisticArr = data && transfromFleetStatistics(data, vehicleData[0]?.lastUpdated);
 
-  const { lastUpdated, nextUpdate } = getRealTimeUpdates(data?.timestamp || "");
+  const { lastUpdated, nextUpdate } = getRealTimeUpdates(vehicleData[0]?.lastUpdated || "");
 
   return (
     <Box>
