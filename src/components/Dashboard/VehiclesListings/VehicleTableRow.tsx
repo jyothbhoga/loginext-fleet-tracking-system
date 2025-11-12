@@ -1,6 +1,9 @@
 import { Chip, TableCell, TableRow } from "@mui/material";
 import type { Vehicle } from "../../../common/interface";
-import { formatCustomLocalGeneric } from "../../../common/utils";
+import {
+  formatCustomLocalGeneric,
+  VEHICLE_CHIP_DESIGN,
+} from "../../../common/utils";
 
 const VehicleTableRow = ({
   vehicle,
@@ -29,8 +32,13 @@ const VehicleTableRow = ({
           size="small"
           sx={{
             backgroundColor:
-              vehicle.status === "delivered" ? "#e8f5e9" : "lightgray",
-            color: vehicle.status === "delivered" ? "#2e7d32" : "black",
+              VEHICLE_CHIP_DESIGN[
+                vehicle.status as keyof typeof VEHICLE_CHIP_DESIGN
+              ].bgColor,
+            color:
+              VEHICLE_CHIP_DESIGN[
+                vehicle.status as keyof typeof VEHICLE_CHIP_DESIGN
+              ].textColor,
             fontWeight: "bold",
             textTransform: "uppercase",
           }}
@@ -41,8 +49,8 @@ const VehicleTableRow = ({
           label={`${vehicle.speed} mph`}
           size="small"
           sx={{
-            backgroundColor: "lightgray",
-            color: "black",
+            backgroundColor: VEHICLE_CHIP_DESIGN.speed.bgColor,
+            color: VEHICLE_CHIP_DESIGN.speed.textColor,
             fontWeight: "bold",
             textTransform: "uppercase",
           }}
@@ -53,7 +61,9 @@ const VehicleTableRow = ({
       <TableCell>
         {formatCustomLocalGeneric(vehicle.lastUpdated, "DD/MM/YYYY, HH:mm:ss")}
       </TableCell>
-      <TableCell>{`${vehicle.currentLocation.lat}, ${vehicle.currentLocation.lat}`}</TableCell>
+      <TableCell>{`${vehicle.currentLocation.lat.toFixed(
+        4
+      )}, ${vehicle.currentLocation.lat.toFixed(4)}`}</TableCell>
     </TableRow>
   );
 };

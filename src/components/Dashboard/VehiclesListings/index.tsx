@@ -19,10 +19,11 @@ const VehicleListings = () => {
         </Typography>
         <Chip
           label="Live"
-          size="small"
+          size="medium"
           sx={{
             border: "1px solid black",
             backgroundColor: "white",
+            color: 'green'
           }}
         />
       </Box>

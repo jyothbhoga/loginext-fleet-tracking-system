@@ -1,3 +1,6 @@
+import type { SvgIconTypeMap } from "@mui/material";
+import type { OverridableComponent } from "@mui/material/OverridableComponent";
+
 export interface Vehicle {
   id: string;
   vehicleNumber: string;
@@ -28,5 +31,6 @@ export interface Statistic {
 export interface Statistic_Card {
   label: string;
   value: number | string;
-  id: string
+  id: string;
+  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>
 }

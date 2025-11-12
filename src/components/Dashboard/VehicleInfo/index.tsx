@@ -7,6 +7,7 @@ import {
   Typography,
   Divider,
   Box,
+  IconButton,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
@@ -17,12 +18,13 @@ import { useFetchSingleVehicle } from "../../../customHooks/useFetchSingleVehicl
 import { selectSingleVehicleState } from "../../../app/singleVehicleReducer/singleVehicleSlice";
 import InfoCard from "./InfoCard";
 import { transformVehicleInfo } from "../../../common/utils";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const VehicleDetailModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isOpen, vehicleId } = useAppSelector(selectVehicleModalState);
 
-  useFetchSingleVehicle(vehicleId ?? '');
+  useFetchSingleVehicle(vehicleId ?? "");
 
   const { data, loading, error } = useAppSelector(selectSingleVehicleState);
   const vehicleInfoArr = data && transformVehicleInfo(data);
@@ -43,11 +45,23 @@ export const VehicleDetailModal: React.FC = () => {
       <>
         <DialogTitle sx={{ paddingBottom: "0" }}>
           <Typography>{data?.vehicleNumber}</Typography>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            size="small"
+            // Ensures the icon button doesn't affect the title's alignment
+            sx={{ ml: "auto", float: "right", mt: "-28px" }}
+          >
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
         <Box
           sx={{ display: "flex", paddingLeft: "24px", paddingBottom: "20px" }}
         >
-          <Typography>{data?.driverName} • {data?.status.toLocaleUpperCase()} </Typography>
+          <Typography>
+            {data?.driverName} •{" "}
+            {data?.status.toLocaleUpperCase().replaceAll("_", " ")}{" "}
+          </Typography>
         </Box>
         <Divider />
         <DialogContent>

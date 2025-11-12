@@ -9,6 +9,8 @@ import {
   VEHICLE_LIST_BY_STATUS_URL,
   VEHICLE_LIST_URL,
 } from "../../../common/config";
+import WifiIcon from "@mui/icons-material/Wifi";
+import FilterIcon from "@mui/icons-material/FilterAlt";
 
 const VehicleFilters = () => {
   const { data, loading, error } = useAppSelector(selectStatisticsState);
@@ -24,9 +26,7 @@ const VehicleFilters = () => {
   }
 
   if (error) {
-    return (
-      <div style={{ color: "red" }}>Error loading filters: {error}</div>
-    );
+    return <div style={{ color: "red" }}>Error loading filters: {error}</div>;
   }
 
   const filters = data && transformFilters(data);
@@ -35,7 +35,7 @@ const VehicleFilters = () => {
     setSelectedFilter(id);
 
     const newUrl =
-      id === "total"
+      id === "all"
         ? VEHICLE_LIST_URL
         : VEHICLE_LIST_BY_STATUS_URL.replace("{{status}}", id);
 
@@ -52,9 +52,32 @@ const VehicleFilters = () => {
           color: "green",
         }}
       >
+        <WifiIcon
+          sx={{ color: "#28a745", fontSize: "large", paddingRight: "10px" }}
+        />{" "}
         Live Updates Active
       </Button>
-      <Typography mt="20px">Filter By Status</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mt: "20px",
+        }}
+      >
+        <FilterIcon
+          sx={{
+            color: "black",
+            fontSize: "1rem",
+            marginRight: "5px",
+          }}
+        />
+        <Typography
+          variant="subtitle2"
+          sx={{ fontWeight: "bold", lineHeight: 1 }}
+        >
+          Filter By Status
+        </Typography>
+      </Box>
       <Box
         mt="20px"
         mb="20px"
