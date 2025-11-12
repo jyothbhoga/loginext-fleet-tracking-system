@@ -25,7 +25,18 @@ const VehicleFilters = () => {
   useFetchVehicles(fetchUrl);
 
   if (loading) {
-    return <div>Loading filters...</div>;
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "200px",
+        }}
+      >
+        <Typography variant="body1">Loading Filters...</Typography>
+      </Box>
+    );
   }
 
   if (error) {

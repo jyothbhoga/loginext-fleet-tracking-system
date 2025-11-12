@@ -2,11 +2,13 @@
 
 import React from "react";
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectVehiclesState } from "../../../app/vehiclesReducer/vehiclesSlice";
@@ -19,7 +21,18 @@ export const VehicleTable: React.FC = () => {
   const dispatch = useAppDispatch();
 
   if (loading) {
-    return <div>Loading vehicles...</div>;
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "400px",
+        }}
+      >
+        <Typography variant="body1">Loading vehicles...</Typography>
+      </Box>
+    );
   }
 
   if (error) {

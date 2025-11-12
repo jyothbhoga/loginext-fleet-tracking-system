@@ -49,7 +49,6 @@ export const VehicleDetailModal: React.FC = () => {
             aria-label="close"
             onClick={handleClose}
             size="small"
-            // Ensures the icon button doesn't affect the title's alignment
             sx={{ ml: "auto", float: "right", mt: "-28px" }}
           >
             <CloseIcon />
@@ -68,8 +67,8 @@ export const VehicleDetailModal: React.FC = () => {
           <Box
             sx={{
               display: "flex",
-              flexWrap: "wrap", // Allow items to wrap to the next line
-              gap: 2, // Spacing between all cards (rows and columns)
+              flexWrap: "wrap", 
+              gap: 2,
             }}
           >
             {vehicleInfoArr?.map((info) => {

@@ -28,10 +28,8 @@ export const modalSlice = createSlice({
   },
 });
 
-// Export actions
 export const { openVehicleModal, closeVehicleModal } = modalSlice.actions;
 
-// Export selectors
 export const selectVehicleModalState = (state: RootState) => state.modals;
 
 export default modalSlice.reducer;

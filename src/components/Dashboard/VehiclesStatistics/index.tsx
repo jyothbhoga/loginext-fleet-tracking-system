@@ -12,7 +12,18 @@ const VehicleStatistics = () => {
   const { data, loading, error } = useAppSelector(selectStatisticsState);
 
   if (loading) {
-    return <div>Loading vehicles...</div>;
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "200px",
+        }}
+      >
+        <Typography variant="body1">Loading vehicles...</Typography>
+      </Box>
+    );
   }
 
   if (error) {
@@ -26,7 +37,7 @@ const VehicleStatistics = () => {
       <Box
         sx={{
           display: "flex",
-          alignItems: "center", 
+          alignItems: "center",
           m: 2,
         }}
       >
@@ -40,8 +51,8 @@ const VehicleStatistics = () => {
 
         <Typography
           variant="subtitle2"
-          component="span" 
-          sx={{ fontWeight: "bold", lineHeight: 1 }} 
+          component="span"
+          sx={{ fontWeight: "bold", lineHeight: 1 }}
         >
           Fleet Statistics
         </Typography>
