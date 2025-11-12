@@ -44,6 +44,13 @@ export const vehiclesSlice = createSlice({
       state.error = action.payload;
       state.data = [];
     },
+    receiveWebSocketUpdate: (state, action: PayloadAction<Vehicle[]>) => {
+      // Logic: Replace the entire array with the new data pushed by the server.
+      // If you were only updating a few vehicles, you would merge the array here.
+      state.data = action.payload;
+      state.loading = false; // Ensure loading is off after receiving data
+      state.error = null;
+    },
   },
 });
 
@@ -54,6 +61,7 @@ export const {
   fetchVehiclesByStatusFailure,
   fetchVehiclesByStatusStart,
   fetchVehiclesByStatusSuccess,
+  receiveWebSocketUpdate,
 } = vehiclesSlice.actions;
 
 export const selectVehiclesState = (state: RootState) => state.vehicles;

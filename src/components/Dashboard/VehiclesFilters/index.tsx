@@ -11,6 +11,7 @@ import {
 } from "../../../common/config";
 import WifiIcon from "@mui/icons-material/Wifi";
 import FilterIcon from "@mui/icons-material/FilterAlt";
+import { useWebSocketVehicles } from "../../../customHooks/useWebsocketVehicles";
 
 const VehicleFilters = () => {
   const { data, loading, error } = useAppSelector(selectStatisticsState);
@@ -18,6 +19,8 @@ const VehicleFilters = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
 
   const [fetchUrl, setFetchUrl] = useState(VEHICLE_LIST_URL);
+
+  useWebSocketVehicles();
 
   useFetchVehicles(fetchUrl);
 

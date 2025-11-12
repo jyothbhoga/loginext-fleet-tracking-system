@@ -57,7 +57,14 @@ const VehicleTableRow = ({
         />
       </TableCell>
       <TableCell>{vehicle.destination}</TableCell>
-      <TableCell>{vehicle.estimatedArrival ?? "-"}</TableCell>
+      <TableCell>
+        {vehicle.estimatedArrival
+          ? formatCustomLocalGeneric(
+              vehicle.estimatedArrival,
+              "DD/MM/YYYY, HH:mm:ss"
+            )
+          : "-"}
+      </TableCell>
       <TableCell>
         {formatCustomLocalGeneric(vehicle.lastUpdated, "DD/MM/YYYY, HH:mm:ss")}
       </TableCell>
