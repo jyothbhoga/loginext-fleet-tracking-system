@@ -1,26 +1,35 @@
 import React from "react";
 
-import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Typography,
+  Divider,
+  Box,
+} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   closeVehicleModal,
   selectVehicleModalState,
 } from "../../../app/modalReducer/modalSlice";
 import { useFetchSingleVehicle } from "../../../customHooks/useFetchSingleVehicle";
-import { VEHICLE_LIST_URL } from "../../../common/config";
 import { selectSingleVehicleState } from "../../../app/singleVehicleReducer/singleVehicleSlice";
+import InfoCard from "./InfoCard";
+import { transformVehicleInfo } from "../../../common/utils";
 
 export const VehicleDetailModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isOpen, vehicleId } = useAppSelector(selectVehicleModalState);
 
-  useFetchSingleVehicle(`${VEHICLE_LIST_URL}/${vehicleId}`);
+  useFetchSingleVehicle(vehicleId ?? '');
 
   const { data, loading, error } = useAppSelector(selectSingleVehicleState);
+  const vehicleInfoArr = data && transformVehicleInfo(data);
 
   const renderContent = () => {
     if (loading) {
-      return <DialogContent>Loading vehicles...</DialogContent>;
+      return <DialogContent>Loading vehicle Data...</DialogContent>;
     }
 
     if (error) {
@@ -32,11 +41,28 @@ export const VehicleDetailModal: React.FC = () => {
     }
     return (
       <>
-        <DialogTitle>Details for Vehicle: {vehicleId}</DialogTitle>
+        <DialogTitle sx={{ paddingBottom: "0" }}>
+          <Typography>{data?.vehicleNumber}</Typography>
+        </DialogTitle>
+        <Box
+          sx={{ display: "flex", paddingLeft: "24px", paddingBottom: "20px" }}
+        >
+          <Typography>{data?.driverName} • {data?.status.toLocaleUpperCase()} </Typography>
+        </Box>
+        <Divider />
         <DialogContent>
-          <p>This is the content for vehicle {vehicleId}.</p>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap", // Allow items to wrap to the next line
+              gap: 2, // Spacing between all cards (rows and columns)
+            }}
+          >
+            {vehicleInfoArr?.map((info) => {
+              return <InfoCard {...info} key={info.id} />;
+            })}
+          </Box>
         </DialogContent>
-        <Button onClick={handleClose}>Close</Button>
       </>
     );
   };

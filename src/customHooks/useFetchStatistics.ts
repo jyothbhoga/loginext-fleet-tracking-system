@@ -37,8 +37,9 @@ export function useFetchStatistics(url: string) {
         dispatch(fetchStatisticsFailure(errorMessage));
       }
     };
-
-    fetchData();
+    if (url) {
+      fetchData();
+    }
 
     return () => {
       controller.abort();

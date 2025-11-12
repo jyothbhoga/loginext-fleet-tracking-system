@@ -1,4 +1,4 @@
-import type { Statistic } from "./interface";
+import type { Statistic, Vehicle } from "./interface";
 
 export function formatCustomLocalGeneric(
   isoString: string,
@@ -116,6 +116,59 @@ export const transformFilters = (stats: Statistic) => {
       label: "Delivered",
       value: stats.delivered,
       id: "delivered",
+    },
+  ];
+};
+
+export const transformVehicleInfo = (data: Vehicle) => {
+  return [
+    {
+      label: "STATUS",
+      value: data.status.toLocaleUpperCase().replaceAll("_", " "),
+      id: "status",
+      isChip: true,
+    },
+    {
+      label: "CURRENT SPEED",
+      value: data.speed,
+      id: "speed",
+    },
+    {
+      label: "DRIVE",
+      value: data.driverName,
+      id: "driverName",
+    },
+    {
+      label: "PHONE",
+      value: data.driverPhone,
+      id: "driverPhone",
+    },
+    {
+      label: "DESTINATION",
+      value: data.destination,
+      id: "destination",
+    },
+    {
+      label: "LOCATION",
+      value: `${data.currentLocation.lat}, ${data.currentLocation.lat}`,
+      id: "currentLocation",
+    },
+    {
+      label: "BATTERY LEVEL",
+      value: data.batteryLevel,
+      id: "batteryLevel",
+      isProgress: true,
+    },
+    {
+      label: "FUEL LEVEL",
+      value: data.fuelLevel,
+      id: "fuelLevel",
+      isProgress: true,
+    },
+    {
+      label: "LAST UPDATED",
+      value: formatCustomLocalGeneric(data.lastUpdated, "DD/MM/YYYY, HH:mm:ss"),
+      id: "lastUpdated",
     },
   ];
 };

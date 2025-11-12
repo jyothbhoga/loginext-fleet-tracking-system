@@ -38,7 +38,9 @@ export function useFetchVehicles(url: string) {
       }
     };
 
-    fetchData();
+    if (url) {
+      fetchData();
+    }
 
     return () => {
       controller.abort();

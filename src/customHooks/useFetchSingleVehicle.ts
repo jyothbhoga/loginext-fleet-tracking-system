@@ -5,6 +5,7 @@ import {
   fetchSingleVehicleStart,
   fetchSingleVehicleSuccess,
 } from "../app/singleVehicleReducer/singleVehicleSlice";
+import { VEHICLE_LIST_URL } from "../common/config";
 
 export function useFetchSingleVehicle(url: string) {
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ export function useFetchSingleVehicle(url: string) {
       dispatch(fetchSingleVehicleStart());
 
       try {
-        const response = await fetch(url, { signal });
+        const response = await fetch(`${VEHICLE_LIST_URL}/${url}`, { signal });
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -37,8 +38,10 @@ export function useFetchSingleVehicle(url: string) {
         dispatch(fetchSingleVehicleFailure(errorMessage));
       }
     };
-
-    fetchData();
+    
+    if (url) {
+      fetchData();
+    }
 
     return () => {
       controller.abort();

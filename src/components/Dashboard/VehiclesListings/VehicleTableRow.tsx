@@ -25,7 +25,7 @@ const VehicleTableRow = ({
       <TableCell>{vehicle.driverName}</TableCell>
       <TableCell>
         <Chip
-          label={vehicle.status}
+          label={vehicle.status.replaceAll("_", " ")}
           size="small"
           sx={{
             backgroundColor:
@@ -51,7 +51,7 @@ const VehicleTableRow = ({
       <TableCell>{vehicle.destination}</TableCell>
       <TableCell>{vehicle.estimatedArrival ?? "-"}</TableCell>
       <TableCell>
-        {formatCustomLocalGeneric(vehicle.lastUpdated, "DD:MM:YYYY, HH:mm:ss")}
+        {formatCustomLocalGeneric(vehicle.lastUpdated, "DD/MM/YYYY, HH:mm:ss")}
       </TableCell>
       <TableCell>{`${vehicle.currentLocation.lat}, ${vehicle.currentLocation.lat}`}</TableCell>
     </TableRow>

@@ -6,6 +6,7 @@ import VehicleStatistics from "./VehiclesStatistics";
 import { VehicleDetailModal } from "./VehicleInfo";
 
 const Dashboard = () => {
+  
   return (
     <Container maxWidth="xl" sx={{ mt: 4 }}>
       <Header />
