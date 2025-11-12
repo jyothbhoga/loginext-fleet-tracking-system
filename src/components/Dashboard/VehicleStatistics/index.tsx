@@ -27,7 +27,7 @@ const VehicleStatistics = () => {
       </Typography>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
         {statisticArr?.map((stat) => {
-          return <StatisticCard {...stat} />;
+          return <StatisticCard {...stat} key={stat.id} />;
         })}
       </Box>
     </Box>

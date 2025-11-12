@@ -10,7 +10,7 @@ const VehicleListings = () => {
   const { data, loading } = useAppSelector(selectVehiclesState);
 
   return (
-    <Box sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.12)" }}>
+    <Box sx={{ borderLeft: "1px solid rgba(0, 0, 0, 0.12)", width: "75%" }}>
       <Box
         display="flex"
         justifyContent="space-between"

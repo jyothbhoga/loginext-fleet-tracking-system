@@ -3,7 +3,7 @@ import type { Statistic_Card } from "../../../common/interface";
 
 const StatisticCard = (stat: Statistic_Card) => {
   return (
-    <Box width="47%" key={stat.key}>
+    <Box width="47%">
       <Paper variant="outlined" sx={{ p: 1, textAlign: "center" }}>
         <Typography variant="h5" color="black" fontWeight="bold">
           {stat.value}

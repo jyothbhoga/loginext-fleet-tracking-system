@@ -6,3 +6,4 @@ export const VEHICLE_LIST_URL = API_URL + "vehicles";
 
 export const STATISTICS_URL = API_URL + "statistics";
 
+export const VEHICLE_LIST_BY_STATUS_URL = `${VEHICLE_LIST_URL}/status/{{status}}`;

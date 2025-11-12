@@ -28,5 +28,5 @@ export interface Statistic {
 export interface Statistic_Card {
   label: string;
   value: number | string;
-  key: string
+  id: string
 }

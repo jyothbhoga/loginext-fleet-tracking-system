@@ -31,6 +31,19 @@ export const vehiclesSlice = createSlice({
       state.error = action.payload;
       state.data = [];
     },
+    fetchVehiclesByStatusStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchVehiclesByStatusSuccess: (state, action: PayloadAction<Vehicle[]>) => {
+      state.loading = false;
+      state.data = action.payload;
+    },
+    fetchVehiclesByStatusFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.data = [];
+    },
   },
 });
 
@@ -38,6 +51,9 @@ export const {
   fetchVehiclesStart,
   fetchVehiclesSuccess,
   fetchVehiclesFailure,
+  fetchVehiclesByStatusFailure,
+  fetchVehiclesByStatusStart,
+  fetchVehiclesByStatusSuccess,
 } = vehiclesSlice.actions;
 
 export const selectVehiclesState = (state: RootState) => state.vehicles;

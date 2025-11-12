@@ -51,7 +51,7 @@ export const VehicleTable: React.FC = () => {
       </TableHead>
       <TableBody>
         {data.map((vehicle) => (
-          <VehicleTableRow vehicle={vehicle} />
+          <VehicleTableRow vehicle={vehicle} key={vehicle.id} />
         ))}
       </TableBody>
     </Table>

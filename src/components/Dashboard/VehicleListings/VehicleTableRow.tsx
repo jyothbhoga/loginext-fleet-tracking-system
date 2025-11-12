@@ -4,7 +4,7 @@ import { formatCustomLocalGeneric } from "../../../common/utils";
 
 const VehicleTableRow = ({ vehicle }: { vehicle: Vehicle }) => {
   return (
-    <TableRow key={vehicle.id}>
+    <TableRow>
       <TableCell
         sx={{
           color: "#3f51b5",

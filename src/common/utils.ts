@@ -27,7 +27,7 @@ export function formatCustomLocalGeneric(
 
     const partsMap = new Map(parts.map((p) => [p.type, p.value]));
 
-    const replacements: { [key: string]: string } = {
+    const replacements: { [id: string]: string } = {
       YYYY: partsMap.get("year") || "",
       MM: partsMap.get("month") || "",
       DD: partsMap.get("day") || "",
@@ -75,22 +75,47 @@ export const transfromFleetStatistics = (stats: Statistic) => {
     {
       label: "TOTAL FLEET",
       value: stats.total,
-      key: "total",
+      id: "total",
     },
     {
       label: "AVG SPEED",
       value: stats.average_speed,
-      key: "average_speed",
+      id: "average_speed",
     },
     {
       label: "MOVING",
       value: stats.en_route,
-      key: "en_route",
+      id: "en_route",
     },
     {
       label: "LAST UPDATE",
       value: formatCustomLocalGeneric(stats.timestamp, "HH:MM"),
-      key: "timestamp",
+      id: "timestamp",
+    },
+  ];
+};
+
+export const transformFilters = (stats: Statistic) => {
+  return [
+    {
+      label: "All",
+      value: stats.total,
+      id: "total",
+    },
+    {
+      label: "Idle",
+      value: stats.idle,
+      id: "idle",
+    },
+    {
+      label: "En Route",
+      value: stats.en_route,
+      id: "en_route",
+    },
+    {
+      label: "Delivered",
+      value: stats.delivered,
+      id: "delivered",
     },
   ];
 };
