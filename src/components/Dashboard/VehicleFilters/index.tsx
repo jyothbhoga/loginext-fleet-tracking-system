@@ -1,8 +1,7 @@
+import { Box } from "@mui/material";
 
 const VehicleFilters = () => {
-  return (
-    <div>VehicleFilters</div>
-  )
-}
+  return <Box>Filter Section</Box>;
+};
 
-export default VehicleFilters
+export default VehicleFilters;

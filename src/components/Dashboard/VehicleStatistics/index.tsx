@@ -1,5 +1,7 @@
+import { Box } from "@mui/material";
+
 const VehicleStatistics = () => {
-  return <div>VehicleStatistics</div>;
+  return <Box>Statistics Section</Box>;
 };
 
 export default VehicleStatistics;

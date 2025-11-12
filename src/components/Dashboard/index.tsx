@@ -1,16 +1,24 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { decrement, increment, selectCount } from "../../app/vehicleReducer/vehicleSlice";
+import { Box, Container, Divider } from "@mui/material";
+import Header from "../../reusableComponents/Header";
+import VehicleFilters from "./VehicleFilters";
+import VehicleListings from "./VehicleListings";
+import VehicleStatistics from "./VehicleStatistics";
 
 const Dashboard = () => {
-  const dispatch = useAppDispatch();
-  const count = useAppSelector(selectCount);
   return (
-    <div>
-      Dashboard
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <span>{count}</span>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
-    </div>
+    <Container maxWidth="xl" sx={{ mt: 4 }}>
+      <Header />
+      <Divider />
+      <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", width: "25%" }}>
+          <VehicleFilters />
+          <Divider />
+
+          <VehicleStatistics />
+        </Box>
+        <VehicleListings />
+      </Box>
+    </Container>
   );
 };
 

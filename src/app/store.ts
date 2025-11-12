@@ -3,7 +3,7 @@ import vehicleReducer from "./vehicleReducer/vehicleSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: vehicleReducer,
+    vehicles: vehicleReducer,
   },
 });
 
